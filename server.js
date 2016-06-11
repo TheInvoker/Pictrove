@@ -2,9 +2,9 @@ var express = require('express');
 var app = express();
 var fs = require('fs');
 var havenondemand = require('havenondemand')
-var https = require('https');
-var request = require("request");
 var Clarifai = require('clarifai');
+
+var formidable = require('formidable');
 
 
 var HPE_HAVEN_KEY = "60219a59-c74e-4a9a-9f58-9342a2586b81";
@@ -16,7 +16,12 @@ var Cclient = new Clarifai({
 })
 
 
+
+
 app.use(express.static(__dirname + '/public'));
+
+
+
 
 // check if on mobile
 function isMobile(req) {
@@ -91,20 +96,51 @@ haven_request(client, 'analyzesentiment', data, function(body) {
 });
  */
 
-imageRecognize(__dirname + '/images/472994020_XS.jpg', function(results){
+/* imageRecognize(__dirname + '/images/472994020_XS.jpg', function(results){
 	console.log(results);
 });
-
+ */
 
 
 
 
 
 /*
- * Visit the home page.
+ * Visit the home page
  */
 app.get('/', function (req, res) {
 	res.sendFile(__dirname + '/public/pictrove.html');
+});
+/*
+ * Handle image upload
+ */
+app.post('/upload', function (req, res, next) {
+	var form = new formidable.IncomingForm();
+	form.parse(req, function(err, fields, files) {
+
+	});
+
+	form.on('end', function(fields, files) {
+		/* Temporary location of our uploaded file */
+		var temp_path = this.openedFiles[0].path;
+		/* The file name of the uploaded file */
+		var file_name = this.openedFiles[0].name;
+		/* Location where we want to copy the uploaded file */
+		var new_location = __dirname + '/images/uploads/';
+
+		fs.rename(temp_path, new_location + file_name, function(err) {  
+			if (err) {
+				console.error(err);
+			} else {
+				console.log("success!")
+			}
+		});
+	});
+	
+	res.writeHead(200); 
+	res.end(JSON.stringify({
+		'status':'ok'
+	}));
 });
 
 
