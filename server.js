@@ -17,38 +17,43 @@ function isMobile(req) {
 
 
 
-var data = {'text' : 'I like cats'};
-var jobID;
 
-
-
-function checkJob(jobID) {
+function checkJob(client, name, jobID, success) {
 	client.getJobStatus(jobID, function(err, resp, body) {
+		if (err) {
+			return console.log('ERROR', err);
+		}
 		
 		var status = resp.body.status;
-		console.log(status);
+		console.log('Service:', name, 'JobID:', jobID, 'Status:', status);
 		
 		if (status == 'finished') {
-			handleResult(resp.body.actions[0].result);
-		} else {
+			success(resp.body.actions[0].result);
+		} else if (status == 'queued') {
 			setTimeout(function() {
-				checkJob(jobID);
+				checkJob(client, name, jobID, success);
 			}, 1000);
 		}
 	});
 }
-function handleResult(result) {
-	console.log(result);
+function haven_request(client, name, data, success) {
+	console.log('Making request', name);
+	
+	client.call(name, data, true, function(err,resp,body) {
+		if (err) {
+			return console.log('ERROR', err);
+		}
+
+		var jobID = resp.body.jobID;
+		checkJob(client, name, jobID, success);
+	}, data);	
 }
-client.call('analyzesentiment', data, true, function(err,resp,body) {
-	jobID = resp.body.jobID;
-	console.log(jobID);
-	checkJob(jobID);
-}, data);
 
 
-
-
+var data = {'text' : 'I like cats'};
+haven_request(client, 'analyzesentiment', data, function(result) {
+	console.log(result);
+});
 
 
 
@@ -60,17 +65,10 @@ app.use(express.static(__dirname + '/public'));
  * Visit the home page.
  */
 app.get('/', function (req, res) {
-	res.sendFile(__dirname + '/public/index.html');
+	res.sendFile(__dirname + '/public/pictrove.html');
 });
 
-app.get('/welcome', function (req, res) {
 
-});
-
-app.get('/tou', function (req, res) {
-	res.writeHead(code); 
-	res.end(str);
-});
 
 
 var server = app.listen(process.env.PORT || 3000, function () {
