@@ -26,49 +26,25 @@ function isMobile(req) {
 
 
 
-function getCredentials() {
-/* 	var options = { 
-		method: 'POST',
-		url: 'https://api.clarifai.com/v1/token/',
-		headers: { 
-			'content-type': 'application/x-www-form-urlencoded',
-			'postman-token': 'dc08176a-927b-1c0f-2bef-60ccef804fea',
-			'cache-control': 'no-cache' 
-		},
-		form: { 
-			client_id: 'vHoj4XdPkGsG1ThB_pvn9QrbldygqdJLGiK2d3Xq',
-			client_secret: 'Cg6MqLWNyRQJNNcOHgBmrniToJFqBNooNGdkWko3',
-			grant_type: 'client_credentials' 
-		} 
-	};
-
-	request(options, function (error, response, body) {
-		if (error) throw new Error(error);
-
-		var data = JSON.parse(body);
-		var access_token = data.access_token;
-		console.log(access_token);
-	}); */
-	
-	Cclient.getAccessToken(function(err, accessToken) {
-		console.log('got token:', accessToken);
+function imageRecognize(image_path, success) {	
+	fs.readFile(image_path, function(err, data) {
+		if (err) {
+			return console.log('ERROR', err);
+		}
 		
-		fs.readFile(__dirname + '/images/472994020_XS.jpg', function(err, data) {
-		  if (err) throw err;
-			console.log('read image');
-			Cclient.tagFromUrls('image', 'http://kickthescale.com/wp-content/uploads/2015/06/Mordy-The-Soccer-Ball.jpg', function(err, results) {
-				if (err) throw err;
-				
-				console.log(results);
-			});
+		//console.log('read image');
+		//Cclient.tagFromUrls('image', 'http://kickthescale.com/wp-content/uploads/2015/06/Mordy-The-Soccer-Ball.jpg', function(err, results) {
+		Cclient.tagFromBuffers('image', data, function(err, results) {
+			if (err) {
+				return console.log('ERROR', err);
+			}
 			
-			
+			success(results);
 		});
-
 	});
 }
 
-getCredentials();
+
 
 
 function checkJob(client, name, jobID, success) {
@@ -108,16 +84,20 @@ haven_request(client, 'analyzesentiment', data, function(body) {
 	console.log(body.actions[0].result);
 }); */
 
-
-
-
-
 /* haven_request(client, 'recognizeimages', {
 	'file' : __dirname + '/images/472994020_XS.jpg'
 }, function(body) {
 	console.log(JSON.stringify(body.actions[0]));
 });
  */
+
+imageRecognize(__dirname + '/images/472994020_XS.jpg', function(results){
+	console.log(results);
+});
+
+
+
+
 
 
 /*
