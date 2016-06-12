@@ -61,10 +61,10 @@ function checkJob(client, name, jobID, success) {
 		
 		if (status == 'finished') {
 			success(resp.body);
-		} else if (status == 'queued') {
-			setTimeout(function() {
+		} else {
+			setTimeout(function(client, name, jobID, success) {
 				checkJob(client, name, jobID, success);
-			}, 1000);
+			}, 1000, client, name, jobID, success);
 		}
 	});
 }
@@ -84,7 +84,13 @@ function haven_request(client, name, data, success) {
 
 
 
-
+function compileImageRecognitionData(data) {
+	var tags = data.tags;
+	var tag_array = tags.map(function(x) {
+		return x["class"];
+	});
+	return tag_array;
+}
 
 
 /*
@@ -100,20 +106,19 @@ app.post('/upload', function (req, res, next) {
 	next();
 }, function(req, res) {
 	var form = new formidable.IncomingForm();
-	
+	var caption = '';
 	
 	
 	form.parse(req, function(err, fields, files) {
 		if (err) {
 			return console.log('ERROR', err);
 		}
-		var caption = fields.caption;
-		console.log(caption);
+		caption = fields.caption;
 	});
 
 	form.on('end', function(fields, files) {
-
-		if (files) {
+		if (this.openedFiles[0].size > 0) {
+		
 			/* Temporary location of our uploaded file */
 			var temp_path = this.openedFiles[0].path;
 			/* The file name of the uploaded file */
@@ -125,17 +130,42 @@ app.post('/upload', function (req, res, next) {
 				if (err) {
 					return console.log('ERROR', err);
 				} else {
-					console.log("success!")
+					console.log("success!");
+
+					if (caption.trim().length > 0) {
+						processSentiment(res, new_location, caption);
+					} else {
+						processImageRecognition(res, new_location, '');
+					}
 				}
 			});
+		} else {	
+			res.writeHead(200); 
+			res.end(JSON.stringify({
+				'status':'ok'
+			}));
 		}
 	});
-	
-	res.writeHead(200); 
-	res.end(JSON.stringify({
-		'status':'ok'
-	}));
 });
+
+function processSentiment(res, new_location, caption) {
+	var data = {'text' : caption};
+	haven_request(client, 'analyzesentiment', data, function(body) {
+		var sentiment = body.actions[0].result.aggregate.sentiment;
+		processImageRecognition(res, new_location, sentiment);
+	});
+}
+function processImageRecognition(res, new_location, sentiment) {
+	imageRecognize(new_location, function(results) {
+		var tag_array = compileImageRecognitionData(results);
+		
+		res.writeHead(200); 
+		res.end(JSON.stringify({
+			'tag_array' : tag_array,
+			'sentiment' : sentiment
+		}));
+	});
+}
 
 
 
