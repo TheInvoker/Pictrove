@@ -1,90 +1,177 @@
- <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
+		<meta charset="UTF-8">
 		<title>Pictrove</title>
-		
-		<script src="/js/jquery-3.0.0.min.js"></script>
-		
-		<style>
-			.content {
-				height:100px;
-				background-color:cyan;
-				margin:20px;
-				box-sizing:border-box;
-			}
-			.popop {
-				position:absolute;
-				width:70%;
-				height:70%;
-				margin-left:50%;
-				margin-top:40px;
-				transform:translate(-50%);
-				left:0;
-				top:0;
-				z-index:3;
-				background-color:red;
-			}
-		</style>
-		
-		<script>
-			$(document).ready(function() {
-				$(".content:gt(0)").hide();
-				$(".menu button").click(function() {
-					var id = $(this).attr("id");
-					$(".content:visible").hide();
-					$(".content[data-id='" + id + "']").show();
-				});
-		
-				
-				$(".imgClear").click(function() {
-					$("#imagefileinput").val(''); 
-					$("body").append("<div class='popop'/>");
-					return false;
-				});
-			});
-		</script>
-		
+		<link rel="stylesheet" type="text/css" href="Pictrove.css">
+		<script src="js/jquery-3.0.0.min.js"></script>
 	</head>
-
 	<body>
-		<form method="post" action="/upload" enctype="multipart/form-data">
-			<input id="imagefileinput" type="file" name="pic" accept="image/*" capture="camera">
-			<input type="text" name="caption"/>
-			<input type="submit" value="Upload">
-		</form> 
-		
-		<div class="imgClear">Clear</div>
-		
-		<table class="menu">
+
+		<table class="header">
 			<tr>
-				<td>
-					<button id="tab1">tab1</button>
+				<td align="left" valign="top">
+					<!-- Use any element to open the sidenav -->
+					<span class="openbtn"><img src="menu.svg" alt="menu button" height="50px" width="50px"></span>
 				</td>
-				<td>
-					<button id="tab2">tab2</button>
-				</td>
-				<td>
-					<button id="tab3">tab3</button>
-				</td>
-				<td>
-					<button id="tab4">tab4</button>
+				<td align="right" valign="top">
+					<div class="account">
+						<table>
+							<th>Welcome, Jon Snow</th>
+							<th><img src="Photos/jon%20copy.png"/></th>
+						</table>
+					</div>
 				</td>
 			</tr>
 		</table>
-		
-		<div class="content" data-id="tab1">
-			1
-		</div>
-		<div class="content" data-id="tab2">
-			2
-		</div>
-		<div class="content" data-id="tab3">
-			3
-		</div>
-		<div class="content" data-id="tab4">
-			4
-		</div>
-	
-	</body>
 
-</html> 
+		<div align="center">
+			<table class="title">
+				<tr>
+					<td valign="middle">
+						<img src="Photos/logo.png" width="40px">
+					</td>
+					<td valign="middle">
+						Pictrove
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<table class="customfont navigation" align="center">
+			<tr>
+				<th><a id="home">Home</a></th>
+				<th><a id="categories">Categories</a></th>
+				<th><a id= "discover">Discover</a></th>
+				<th><a href="chat.html">Chat</a></th>
+				<th>
+					<a class="upload_button">Trove It!</a>
+				</th>
+			</tr>
+		</table>
+		
+		<!-- Navigation -->
+		<div id="mySidenav" class="sidenav customfont">
+			<div align="right">
+				<a href="javascript:void(0)" class="closebtn">&times;</a>
+			</div>
+			<div class="item"><a href="/">Home</a></div>
+			<div class="item"><a href="javascript:void(0);">My Account</a></div>
+			<div class="item"><a href="javascript:void(0);">Chat</a></div>
+			<div class="item"><a href="javascript:void(0);">Morning Routine</a></div>
+			<div class="item"><a href="javascript:void(0);">Lunch Adventures</a></div>
+			<div class="item"><a href="javascript:void(0);">Bedtime Routine</a></div>
+			<div class="item"><a id="itslit" href="javascript:void(0);">It's Lit</a></div>
+			<div class="item"><a href="javascript:void(0);">Made my Day</a></div>
+			<div class="item"><a href="javascript:void(0);">F my Life</a></div>
+		</div>
+		
+		<div class="form_container">
+			<form method="post" action="/upload" enctype="multipart/form-data">
+				<input id="imagefileinput" type="file" name="pic" accept="image/*" capture="camera">
+				<input type="text" name="caption"/>
+				<input type="submit" value="Upload">
+			</form>
+			<canvas id="canvas" width="300px" height="300px">
+			</canvas>
+			
+			<div class="metadata">
+				<div>
+					<div class="img_tags_recognition_label">Tags: </div>
+					<div class="img_tags_recognition"></div>
+				</div>
+				<div>
+					<div class="img_sentiment_label">Sentiment Analysis:</div>
+					<div class="img_sentiment"></div>
+				</div>
+			</div>
+		</div>
+		
+		<hr/>
+		
+		<!-- Home -->
+		<div class="table_container" align="center" data-id="home">
+			<table class="pictures">
+				<tr>
+					<td><img src="Photos/happypeeps.jpg" class="picture_table"></td>
+					<td><img src="Photos/drinks.png" class="picture_table"></td>
+					<td><img src="Photos/accident.png" class="picture_table"></td>
+				</tr>
+				<tr>
+					<td><img src="Photos/chips.png" class="picture_table"></td>
+					<td><img src="Photos/mcdonalds.png" class="picture_table"></td>
+					<td><img src="Photos/mustache.png" class="picture_table"></td>
+				</tr>
+			</table>
+		</div>
+		
+		
+
+		
+		<!--Categories-->
+		<div class="table_container" align="center" data-id="categories">
+			<table class="pictures">
+				<tr>
+					<td><img src="Photos/morning.png" class="picture_table"><div class="customfont imagecaption">
+						Morning Routine
+					</div></td>
+					<td><img src="Photos/lunch.png" class="picture_table"><div class="customfont imagecaption">
+						Lunch Adventure
+					</div></td>
+					<td><img src="Photos/dinner.png" class="picture_table"><div class="customfont imagecaption">
+						Bedtime
+					</div></td>
+				</tr>
+				<tr>
+					<td><a id="itslit"><img src="Photos/turnup.png" class="picture_table"><div class="customfont imagecaption">
+						It's Lit
+					</div></a></td>
+					<td><img src="Photos/day.png" class="picture_table"><div class="customfont imagecaption">
+						Made my Day
+					</div></td>
+					<td><img src="Photos/fml.png" class="picture_table"><div class="customfont imagecaption">
+						F My Life
+					</div></td>
+				</tr>
+			</table>
+		</div>
+		<!-- Discover -->
+		<div class="table_container" align="center" data-id="discover">
+			<!-- Search Bar -->
+			<div align="center"><form class="searchbar">
+				<input type="text" class="text" placeholder="Find friends and discover new people...">
+				<input type="button" value="Go!">
+			</form></div>
+			<table class="pictures">
+				<tr>
+					<td><img src="Photos/bean.png" class="picture_table"></td>
+					<td><img src="Photos/photo1.png" class="picture_table"></td>
+					<td><img src="Photos/shower.png" class="picture_table"></td>
+				</tr>
+				<tr>
+					<td><img src="Photos/photo3.png" class="picture_table"></td>
+					<td><img src="Photos/day.png" class="picture_table"></td>
+					<td><img src="Photos/thyme.png" class="picture_table"></td>
+				</tr>
+			</table>
+		</div>
+		<!-- It's Lit -->
+		<div class="table_container" align="center" data-id="itslit">
+			<h3>It's Lit</h3>
+			<table class="pictures">
+				<tr>
+					<td><img src="Photos/people.png" class="picture_table_for_category"></td>
+					<td><img src="Photos/people3.png" class="picture_table_for_category"></td>
+					<td><img src="Photos/people2.png" class="picture_table_for_category"></td>
+				</tr>
+				<tr>
+					<td><img src="Photos/people4.png" class="picture_table_for_category"></td>
+					<td><img src="Photos/people5.png" class="picture_table_for_category"></td>
+					<td><img src="Photos/turnup.png" class="picture_table_for_category"></td>
+				</tr>
+			</table>
+		</div>
+
+		<script type="text/javascript" src="Pictrove.js"></script>
+	</body>
+</html>

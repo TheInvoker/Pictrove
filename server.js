@@ -50,7 +50,7 @@ function imageRecognize(image_path, success) {
 
 
 
-function checkJob(client, name, jobID, success) {
+function checkJob(client, name, jobID, success, tries) {
 	client.getJobStatus(jobID, function(err, resp, body) {
 		if (err) {
 			return console.log('ERROR', err);
@@ -62,9 +62,24 @@ function checkJob(client, name, jobID, success) {
 		if (status == 'finished') {
 			success(resp.body);
 		} else {
-			setTimeout(function(client, name, jobID, success) {
-				checkJob(client, name, jobID, success);
-			}, 1000, client, name, jobID, success);
+			if (tries > 3) {
+				console.log("TIMED OUT");
+				success({
+					'actions' : [
+						{
+							'result' : {
+								'aggregate' : {
+									'sentiment' : 'neutral'
+								}
+							}
+						}
+					]
+				});
+			} else {
+				setTimeout(function(client, name, jobID, success) {
+					checkJob(client, name, jobID, success, tries+1);
+				}, 1000, client, name, jobID, success);
+			}
 		}
 	});
 }
@@ -77,7 +92,7 @@ function haven_request(client, name, data, success) {
 		}
 
 		var jobID = resp.body.jobID;
-		checkJob(client, name, jobID, success);
+		checkJob(client, name, jobID, success, 0);
 	}, data);	
 }
 
