@@ -71,6 +71,7 @@ $(document).ready(function() {
 	});
 
 	$(".form_container form").submit(function() {
+		$('#canvas').addClass("loading");
 		var formData = new FormData($(this)[0]);
 		$.ajax({
 			url: '/upload',
@@ -83,6 +84,7 @@ $(document).ready(function() {
 
 				$(".metadata").show();
 				
+				$(".img_tags_recognition").empty();
 				for(var i=0; i<data.tag_array.length; i+=1) {
 					$(".img_tags_recognition").append("<div class='tag'>" + data.tag_array[i] + "</div>");
 				}
@@ -91,6 +93,9 @@ $(document).ready(function() {
 			},
 			error : function(request, status, error) {
 				alert("error");
+			},
+			complete : function() {
+				$('#canvas').removeClass("loading");
 			},
 			cache: false,
 			contentType: false,
