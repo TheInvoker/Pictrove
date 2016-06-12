@@ -132,11 +132,7 @@ app.post('/upload', function (req, res, next) {
 				} else {
 					console.log("success!");
 
-					if (caption.trim().length > 0) {
-						processSentiment(res, new_location, caption);
-					} else {
-						processImageRecognition(res, new_location, '');
-					}
+					processImageRecognition(res, new_location, caption);
 				}
 			});
 		} else {	
@@ -148,16 +144,20 @@ app.post('/upload', function (req, res, next) {
 	});
 });
 
-function processSentiment(res, new_location, caption) {
-	var data = {'text' : caption};
-	haven_request(client, 'analyzesentiment', data, function(body) {
-		var sentiment = body.actions[0].result.aggregate.sentiment;
-		processImageRecognition(res, new_location, sentiment);
-	});
-}
-function processImageRecognition(res, new_location, sentiment) {
+
+function processImageRecognition(res, new_location, caption) {
 	imageRecognize(new_location, function(results) {
 		var tag_array = compileImageRecognitionData(results);
+		processSentiment(res, new_location, caption, tag_array);
+	});
+}
+function processSentiment(res, new_location, caption, tag_array) {
+	var data = {
+		'text' : caption.trim().length > 0 ? caption : tag_array.join(" ")
+	};
+	
+	haven_request(client, 'analyzesentiment', data, function(body) {
+		var sentiment = body.actions[0].result.aggregate.sentiment;
 		
 		res.writeHead(200); 
 		res.end(JSON.stringify({
@@ -166,6 +166,7 @@ function processImageRecognition(res, new_location, sentiment) {
 		}));
 	});
 }
+
 
 
 
