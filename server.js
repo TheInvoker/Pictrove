@@ -69,7 +69,7 @@ function checkJob(client, name, jobID, success, tries) {
 						{
 							'result' : {
 								'aggregate' : {
-									'sentiment' : 'neutral'
+									'sentiment' : 'positive'
 								}
 							}
 						}
