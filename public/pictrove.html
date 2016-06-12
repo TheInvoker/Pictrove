@@ -12,17 +12,35 @@
 				margin:20px;
 				box-sizing:border-box;
 			}
+			.popop {
+				position:absolute;
+				width:70%;
+				height:70%;
+				margin-left:50%;
+				margin-top:40px;
+				transform:translate(-50%);
+				left:0;
+				top:0;
+				z-index:3;
+				background-color:red;
+			}
 		</style>
 		
 		<script>
 			$(document).ready(function() {
-				$(".content").hide();
+				$(".content:gt(0)").hide();
 				$(".menu button").click(function() {
 					var id = $(this).attr("id");
 					$(".content:visible").hide();
 					$(".content[data-id='" + id + "']").show();
 				});
-				$(".menu button").eq(0).click();
+		
+				
+				$(".imgClear").click(function() {
+					$("#imagefileinput").val(''); 
+					$("body").append("<div class='popop'/>");
+					return false;
+				});
 			});
 		</script>
 		
@@ -30,9 +48,12 @@
 
 	<body>
 		<form method="post" action="/upload" enctype="multipart/form-data">
-			<input type="file" name="pic" accept="image/*" capture="camera">
+			<input id="imagefileinput" type="file" name="pic" accept="image/*" capture="camera">
+			<input type="text" name="caption"/>
 			<input type="submit" value="Upload">
 		</form> 
+		
+		<div class="imgClear">Clear</div>
 		
 		<table class="menu">
 			<tr>
