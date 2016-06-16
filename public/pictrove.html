@@ -2,183 +2,194 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
+		<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+		
 		<title>Pictrove</title>
-		<link rel="stylesheet" type="text/css" href="Pictrove.css">
-		<script src="js/jquery-3.0.0.min.js"></script>
+		
+		<script src="/js/jquery-3.0.0.min.js"></script>
+		<script type="text/javascript" src="/js/Pictrove.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+		<link rel="stylesheet" type="text/css" href="/css/Pictrove.css">
+		<link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
 	</head>
 	<body>
 
-		<table class="header">
-			<tr>
-				<td align="left" valign="top">
-					<!-- Use any element to open the sidenav -->
-					<span class="openbtn"><img src="menu.svg" alt="menu button" height="50px" width="50px"></span>
-				</td>
-				<td align="right" valign="top">
-					<div class="account">
-						<table>
-							<th>Welcome, Jon Snow</th>
-							<th><img src="Photos/jon%20copy.png"/></th>
-						</table>
-					</div>
-				</td>
-			</tr>
-		</table>
-
-		<div align="center">
-			<table class="title">
-				<tr>
-					<td valign="middle">
-						<img src="Photos/logo.png" width="40px">
-					</td>
-					<td valign="middle">
-						Pictrove
-					</td>
-				</tr>
-			</table>
-		</div>
-
-		<table class="customfont navigation" align="center">
-			<tr>
-				<th><a id="home">Home</a></th>
-				<th><a id="categories">Categories</a></th>
-				<th><a id= "discover">Discover</a></th>
-				<th><a id="chat">Chat</a></th>
-				<th>
-					<a class="upload_button">Trove It!</a>
-				</th>
-			</tr>
-		</table>
 		
-		<!-- Navigation -->
-		<div id="mySidenav" class="sidenav customfont">
-			<div align="right">
-				<a href="javascript:void(0)" class="closebtn">&times;</a>
+		<div class="header customfont">
+			<div class="openbtn">
 			</div>
-			<div class="item"><a href="/">Home</a></div>
-			<div class="item"><a href="javascript:void(0);">My Account</a></div>
-			<div class="item"><a href="javascript:void(0);">Chat</a></div>
-			<div class="item"><a href="javascript:void(0);">Morning Routine</a></div>
-			<div class="item"><a href="javascript:void(0);">Lunch Adventures</a></div>
-			<div class="item"><a href="javascript:void(0);">Bedtime Routine</a></div>
-			<div class="item"><a id="itslit" href="javascript:void(0);">It's Lit</a></div>
-			<div class="item"><a href="javascript:void(0);">Made my Day</a></div>
-			<div class="item"><a href="javascript:void(0);">F my Life</a></div>
+			<div class="main_container">
+				<div class="main_logo"></div>
+				<div class="title">
+					Pictrove
+				</div>
+			</div>
+			<div class="account_container">
+				<div class="avatar"></div>
+				
+				<div class="account">
+					Welcome, Jon Snow
+				</div>
+			</div>
+			<div class="header_links">
+				<div class="header_link" data-id="home">
+					Home
+				</div>
+				<div class="header_link" data-id="categories">
+					Categories
+				</div>
+				<div class="header_link" data-id="discover">
+					Discover
+				</div>
+				<div class="header_link" data-id="chat">
+					Chat
+				</div>
+				<div class="header_link">
+					Trove It!
+				</div>
+			</div>
 		</div>
+
+
+		<div class="content customfont">
 		
-		<div class="form_container">
-			<form method="post" action="/upload" enctype="multipart/form-data">
-				<input id="imagefileinput" type="file" name="pic" accept="image/*" capture="camera">
-				<input type="text" name="caption"/>
-				<input type="submit" value="Upload">
-			</form>
-			<canvas id="canvas" width="300px" height="300px">
-			</canvas>
+			<!-- Navigation -->
+			<div id="mySidenav">
+				<div align="right">
+					<a href="javascript:void(0);" class="closebtn">&times;</a>
+				</div>
+				<div class="item"><a href="/">Home</a></div>
+				<div class="item"><a href="javascript:void(0);">My Account</a></div>
+				<div class="item"><a href="javascript:void(0);">Chat</a></div>
+				<div class="item"><a href="javascript:void(0);">Morning Routine</a></div>
+				<div class="item"><a href="javascript:void(0);">Lunch Adventures</a></div>
+				<div class="item"><a href="javascript:void(0);">Bedtime Routine</a></div>
+				<div class="item"><a id="itslit" href="javascript:void(0);">It's Lit</a></div>
+				<div class="item"><a href="javascript:void(0);">Made my Day</a></div>
+				<div class="item"><a href="javascript:void(0);">F my Life</a></div>
+			</div>
 			
-			<div class="metadata">
-				<div>
-					<div class="img_tags_recognition_label">Tags: </div>
-					<div class="img_tags_recognition"></div>
-				</div>
-				<div>
-					<div class="img_sentiment_label">Sentiment Analysis:</div>
-					<div class="img_sentiment"></div>
+			<!--
+			<div class="form_container">
+				<form method="post" action="/upload" enctype="multipart/form-data">
+					<input id="imagefileinput" type="file" name="pic" accept="image/*" capture="camera">
+					<input type="text" name="caption"/>
+					<input type="submit" value="Upload">
+				</form>
+				<canvas id="canvas" width="300px" height="300px">
+				</canvas>
+				
+				<div class="metadata">
+					<div>
+						<div class="img_tags_recognition_label">Tags: </div>
+						<div class="img_tags_recognition"></div>
+					</div>
+					<div>
+						<div class="img_sentiment_label">Sentiment Analysis:</div>
+						<div class="img_sentiment"></div>
+					</div>
 				</div>
 			</div>
-		</div>
-		
-		<hr/>
-		
-		<!-- Home -->
-		<div class="table_container" align="center" data-id="home">
-			<table class="pictures">
-				<tr>
-					<td><img src="Photos/happypeeps.jpg" class="picture_table"></td>
-					<td><img src="Photos/drinks.png" class="picture_table"></td>
-					<td><img src="Photos/accident.png" class="picture_table"></td>
-				</tr>
-				<tr>
-					<td><img src="Photos/chips.png" class="picture_table"></td>
-					<td><img src="Photos/mcdonalds.png" class="picture_table"></td>
-					<td><img src="Photos/mustache.png" class="picture_table"></td>
-				</tr>
-			</table>
-		</div>
-		
-		
+			-->
+			
+			<!-- Home -->
+			<div class="page_content" data-id="home">
+				<div class="image_grid">
+					<div class="image_grid_container">
+						<img src="/Photos/happypeeps.jpg" class="picture_container mypicture">
+						<img src="/Photos/drinks.png" class="picture_container mypicture">
+						<img src="/Photos/accident.png" class="picture_container mypicture">
+						<img src="/Photos/chips.png" class="picture_container mypicture">
+						<img src="/Photos/mcdonalds.png" class="picture_container mypicture">
+						<img src="/Photos/mustache.png" class="picture_container mypicture">
+					</div>
+				</div>
+			</div>
+			
+			
 
-		
-		<!--Categories-->
-		<div class="table_container" align="center" data-id="categories">
-			<table class="pictures">
-				<tr>
-					<td><img src="Photos/morning.png" class="picture_table"><div class="customfont imagecaption">
-						Morning Routine
-					</div></td>
-					<td><img src="Photos/lunch.png" class="picture_table"><div class="customfont imagecaption">
-						Lunch Adventure
-					</div></td>
-					<td><img src="Photos/dinner.png" class="picture_table"><div class="customfont imagecaption">
-						Bedtime
-					</div></td>
-				</tr>
-				<tr>
-					<td><a id="itslit"><img src="Photos/turnup.png" class="picture_table"><div class="customfont imagecaption">
-						It's Lit
-					</div></a></td>
-					<td><img src="Photos/day.png" class="picture_table"><div class="customfont imagecaption">
-						Made my Day
-					</div></td>
-					<td><img src="Photos/fml.png" class="picture_table"><div class="customfont imagecaption">
-						F My Life
-					</div></td>
-				</tr>
-			</table>
-		</div>
-		
-		<!-- Discover -->
-		<div class="table_container" align="center" data-id="discover">
-			<!-- Search Bar -->
-			<div align="center"><form class="searchbar">
-				<input type="text" class="text" placeholder="Find friends and discover new people...">
-				<input type="button" value="Go!">
-			</form></div>
-			<table class="pictures">
-				<tr>
-					<td><img src="Photos/bean.png" class="picture_table"></td>
-					<td><img src="Photos/photo1.png" class="picture_table"></td>
-					<td><img src="Photos/shower.png" class="picture_table"></td>
-				</tr>
-				<tr>
-					<td><img src="Photos/photo3.png" class="picture_table"></td>
-					<td><img src="Photos/day.png" class="picture_table"></td>
-					<td><img src="Photos/thyme.png" class="picture_table"></td>
-				</tr>
-			</table>
-		</div>
-		
-		<!-- Chat -->
-		<div class="table_container" align="center" data-id="chat">
-			<img src="/Photos/chat.png" width="80%"/>
-		</div>
-		
-		<!-- It's Lit -->
-		<div class="table_container" align="center" data-id="itslit">
-			<h3>It's Lit</h3>
-			<table class="pictures">
-				<tr>
-					<td><img src="Photos/people.png" class="picture_table_for_category"></td>
-					<td><img src="Photos/people3.png" class="picture_table_for_category"></td>
-					<td><img src="Photos/people2.png" class="picture_table_for_category"></td>
-				</tr>
-				<tr>
-					<td><img src="Photos/people4.png" class="picture_table_for_category"></td>
-					<td><img src="Photos/people5.png" class="picture_table_for_category"></td>
-					<td><img src="Photos/turnup.png" class="picture_table_for_category"></td>
-				</tr>
-			</table>
-		</div>
+			
+			<!--Categories-->
+			<div class="page_content" data-id="categories">
+				<div class="image_grid">
+					<div class="image_grid_container">
+						<div class="picture_container">
+							<div>Morning Routine</div>
+							<img src="/Photos/morning.png" class="mypicture">
+						</div>		
 
-		<script type="text/javascript" src="Pictrove.js"></script>
+						<div class="picture_container">
+							<div>Lunch Adventure</div>
+							<img src="/Photos/lunch.png" class="mypicture">
+						</div>
+						
+						<div class="picture_container">
+							<div>Bedtime</div>
+							<img src="/Photos/dinner.png" class="mypicture">
+						</div>
+
+						<div class="picture_container">
+							<div>It's Lit</div>
+							<img src="/Photos/turnup.png" class="mypicture">
+						</div>
+						
+						<div class="picture_container">
+							<div>Made my Day</div>
+							<img src="/Photos/day.png" class="mypicture">
+						</div>
+						
+						<div class="picture_container">
+							<div>F My Life</div>
+							<img src="/Photos/fml.png" class="mypicture">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Discover -->
+			<div class="page_content" data-id="discover">
+			
+				<!-- Search Bar -->
+				<div align="center">
+					<form class="searchbar">
+						<input type="text" class="text" placeholder="Find friends and discover new people...">
+						<input type="submit" value="Go!">
+					</form>
+				</div>
+				
+				<div class="image_grid">
+					<div class="image_grid_container">
+						<img src="/Photos/bean.png" class="picture_container mypicture">
+						<img src="/Photos/photo1.png" class="picture_container mypicture">
+						<img src="/Photos/shower.png" class="picture_container mypicture">
+						<img src="/Photos/photo3.png" class="picture_container mypicture">
+						<img src="/Photos/day.png" class="picture_container mypicture">
+						<img src="/Photos/thyme.png" class="picture_container mypicture">
+					</div>
+				</div>
+			</div>
+			
+			<!-- Chat -->
+			<div class="page_content" data-id="chat">
+				<img src="/Photos/chat.png" width="80%"/>
+			</div>
+			
+			<!-- It's Lit -->
+			<div class="page_content" data-id="itslit">
+				<h3>It's Lit</h3>
+				<div class="image_grid">
+					<div class="image_grid_container">
+						<img src="Photos/people.png" class="picture_container mypicture">
+						<img src="Photos/people3.png" class="picture_container mypicture">
+						<img src="Photos/people2.png" class="picture_container mypicture">
+						<img src="Photos/people4.png" class="picture_container mypicture">
+						<img src="Photos/people5.png" class="picture_container mypicture">
+						<img src="Photos/turnup.png" class="picture_container mypicture">
+					</div>
+				</div>
+			</div>
+			
+		</div>
 	</body>
 </html>
