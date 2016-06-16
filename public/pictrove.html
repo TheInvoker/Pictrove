@@ -13,22 +13,21 @@
 		<link rel="stylesheet" type="text/css" href="/css/Pictrove.css">
 		<link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
 	</head>
-	<body>
+	<body class="customfont">
 
 		
-		<div class="header customfont">
-			<div class="openbtn">
+		<div class="header">
+			<div class="open_nav_button">
 			</div>
 			<div class="main_container">
 				<div class="main_logo"></div>
-				<div class="title">
+				<div class="app_title">
 					Pictrove
 				</div>
 			</div>
 			<div class="account_container">
-				<div class="avatar"></div>
-				
-				<div class="account">
+				<div class="avatar_image"></div>
+				<div class="account_name">
 					Welcome, Jon Snow
 				</div>
 			</div>
@@ -52,12 +51,12 @@
 		</div>
 
 
-		<div class="content customfont">
+		<div class="content">
 		
 			<!-- Navigation -->
 			<div id="mySidenav">
-				<div align="right">
-					<a href="javascript:void(0);" class="closebtn">&times;</a>
+				<div class="item" align="right">
+					<a href="javascript:void(0);" class="close_nav_button">&times;</a>
 				</div>
 				<div class="item"><a href="/">Home</a></div>
 				<div class="item"><a href="javascript:void(0);">My Account</a></div>
@@ -95,6 +94,10 @@
 			
 			<!-- Home -->
 			<div class="page_content" data-id="home">
+				<div align="center">
+					<h3>Feed</h3>
+				</div>
+			
 				<div class="image_grid">
 					<div class="image_grid_container">
 						<img src="/Photos/happypeeps.jpg" class="picture_container mypicture">
@@ -112,6 +115,11 @@
 			
 			<!--Categories-->
 			<div class="page_content" data-id="categories">
+			
+				<div align="center">
+					<h3>Categories</h3>
+				</div>
+				
 				<div class="image_grid">
 					<div class="image_grid_container">
 						<div class="picture_container">
@@ -152,8 +160,9 @@
 			
 				<!-- Search Bar -->
 				<div align="center">
+					<h3>Find friends and discover new people...</h3>
 					<form class="searchbar">
-						<input type="text" class="text" placeholder="Find friends and discover new people...">
+						<input type="text" class="text" placeholder="search...">
 						<input type="submit" value="Go!">
 					</form>
 				</div>
@@ -172,12 +181,20 @@
 			
 			<!-- Chat -->
 			<div class="page_content" data-id="chat">
-				<img src="/Photos/chat.png" width="80%"/>
+				<div align="center">
+					<h3>Chat</h3>
+					<img src="/Photos/chat.png" width="80%"/>
+				</div>
 			</div>
 			
 			<!-- It's Lit -->
 			<div class="page_content" data-id="itslit">
-				<h3>It's Lit</h3>
+			
+				<!-- title -->
+				<div align="center">
+					<h3>It's Lit</h3>
+				</div>
+				
 				<div class="image_grid">
 					<div class="image_grid_container">
 						<img src="Photos/people.png" class="picture_container mypicture">

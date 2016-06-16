@@ -31,12 +31,12 @@ function closeAll() {
 $(document).ready(function() {
 	
 	
-    $(".openbtn").click(function() {
+    $(".open_nav_button").click(function() {
         openNav();
         return false;
     });
 
-    $(".closebtn").click(function() {
+    $(".close_nav_button").click(function() {
         closeNav();
         return false;
     });
