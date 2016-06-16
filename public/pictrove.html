@@ -58,24 +58,25 @@
 				<div class="item" align="right">
 					<a href="javascript:void(0);" class="close_nav_button">&times;</a>
 				</div>
-				<div class="item"><a href="/">Home</a></div>
+				<div class="item"><a data-id="home" href="/">Home</a></div>
 				<div class="item"><a href="javascript:void(0);">My Account</a></div>
 				<div class="item"><a href="javascript:void(0);">Chat</a></div>
 				<div class="item"><a href="javascript:void(0);">Morning Routine</a></div>
 				<div class="item"><a href="javascript:void(0);">Lunch Adventures</a></div>
 				<div class="item"><a href="javascript:void(0);">Bedtime Routine</a></div>
-				<div class="item"><a id="itslit" href="javascript:void(0);">It's Lit</a></div>
+				<div class="item"><a data-id="itslit" href="javascript:void(0);">It's Lit</a></div>
 				<div class="item"><a href="javascript:void(0);">Made my Day</a></div>
 				<div class="item"><a href="javascript:void(0);">F my Life</a></div>
 			</div>
 			
-			<!--
+			
 			<div class="form_container">
 				<form method="post" action="/upload" enctype="multipart/form-data">
 					<input id="imagefileinput" type="file" name="pic" accept="image/*" capture="camera">
 					<input type="text" name="caption"/>
 					<input type="submit" value="Upload">
 				</form>
+				
 				<canvas id="canvas" width="300px" height="300px">
 				</canvas>
 				
@@ -90,7 +91,7 @@
 					</div>
 				</div>
 			</div>
-			-->
+			
 			
 			<!-- Home -->
 			<div class="page_content" data-id="home">
@@ -137,7 +138,7 @@
 							<img src="/Photos/dinner.png" class="mypicture">
 						</div>
 
-						<div class="picture_container">
+						<div class="picture_container" data-id="itslit">
 							<div>It's Lit</div>
 							<img src="/Photos/turnup.png" class="mypicture">
 						</div>
