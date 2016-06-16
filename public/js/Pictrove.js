@@ -96,6 +96,18 @@ $(document).ready(function() {
 	
 	
 	$(".form_container").hide();
+    $('#imagefileinput').change(function(e) {
+		$(".metadata").hide();
+        var file = e.target.files[0],
+            imageType = /image.*/;
+
+        if (!file.type.match(imageType))
+            return;
+
+        var reader = new FileReader();
+        reader.onload = fileOnload;
+        reader.readAsDataURL(file);
+    });
 	
 	/*
     $(".table_container").hide();
