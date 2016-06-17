@@ -153,7 +153,11 @@ a {
 	top:0;
 	left:0;
 }
-
+.shadow {
+    -moz-box-shadow: 0 0 10px;
+    -webkit-box-shadow: 0 0 10px;
+    box-shadow: 0 0 10px;
+}
 
 
 
@@ -177,10 +181,6 @@ a {
     -webkit-translation-property: transform;
     -ms-transition-duration: 1s;
     -webkit-transition-duration: 1s;
-    
-    -moz-box-shadow: 0 0 10px;
-    -webkit-box-shadow: 0 0 10px;
-    box-shadow: 0 0 10px;
 }
 #mySidenav.openNavDrawer {
     transform: translate(0%);
@@ -204,6 +204,15 @@ a {
 }
 #mySidenav .item a:hover {
     color: #83bac3;
+}
+
+
+
+
+
+.menu_button {
+	position:absolute;
+	right:0;
 }
 
 
@@ -268,4 +277,19 @@ a {
 	padding:5px;
 	font-size:1em;
 	cursor:pointer;
+}
+
+
+
+.content {
+	display:flex;
+	flex-flow:column;
+}
+.inner_content {
+	flex:1 0 auto;
+}
+.footer {
+	height:200px;
+	background-color:#70b2f3;
+	flex:0 0 auto;
 }

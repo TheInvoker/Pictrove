@@ -16,7 +16,7 @@
 	<body class="customfont">
 
 		
-		<div class="header">
+		<div class="header shadow">
 			<div class="open_nav_button">
 			</div>
 			<div class="main_container">
@@ -53,161 +53,173 @@
 
 		<div class="content">
 		
-			<!-- Navigation -->
-			<div id="mySidenav">
-				<div class="item" align="right">
-					<a href="javascript:void(0);" class="close_nav_button">&times;</a>
-				</div>
-				<div class="item"><a data-id="home" href="/">Home</a></div>
-				<div class="item"><a href="javascript:void(0);">My Account</a></div>
-				<div class="item"><a href="javascript:void(0);">Chat</a></div>
-				<div class="item"><a href="javascript:void(0);">Morning Routine</a></div>
-				<div class="item"><a href="javascript:void(0);">Lunch Adventures</a></div>
-				<div class="item"><a href="javascript:void(0);">Bedtime Routine</a></div>
-				<div class="item"><a data-id="itslit" href="javascript:void(0);">It's Lit</a></div>
-				<div class="item"><a href="javascript:void(0);">Made my Day</a></div>
-				<div class="item"><a href="javascript:void(0);">F my Life</a></div>
-			</div>
-			
-			
-			<div class="form_container">
-				<form method="post" action="/upload" enctype="multipart/form-data">
-					<input id="imagefileinput" type="file" name="pic" accept="image/*" capture="camera">
-					<input type="text" name="caption"/>
-					<input type="submit" value="Upload">
-				</form>
-				
-				<canvas id="canvas" width="300px" height="300px">
-				</canvas>
-				
-				<div class="metadata">
-					<div>
-						<div class="img_tags_recognition_label">Tags: </div>
-						<div class="img_tags_recognition"></div>
+		
+			<div class="inner_content">
+		
+				<!-- Navigation -->
+				<div id="mySidenav" class="shadow">
+					<div class="item menu_button" align="right">
+						<a href="javascript:void(0);" class="close_nav_button">&times;</a>
 					</div>
-					<div>
-						<div class="img_sentiment_label">Sentiment Analysis:</div>
-						<div class="img_sentiment"></div>
-					</div>
-				</div>
-			</div>
-			
-			
-			<!-- Home -->
-			<div class="page_content" data-id="home">
-				<div align="center">
-					<h3>Feed</h3>
-				</div>
-			
-				<div class="image_grid">
-					<div class="image_grid_container">
-						<img src="/Photos/happypeeps.jpg" class="picture_container mypicture">
-						<img src="/Photos/drinks.png" class="picture_container mypicture">
-						<img src="/Photos/accident.png" class="picture_container mypicture">
-						<img src="/Photos/chips.png" class="picture_container mypicture">
-						<img src="/Photos/mcdonalds.png" class="picture_container mypicture">
-						<img src="/Photos/mustache.png" class="picture_container mypicture">
-					</div>
-				</div>
-			</div>
-			
-			
-
-			
-			<!--Categories-->
-			<div class="page_content" data-id="categories">
-			
-				<div align="center">
-					<h3>Categories</h3>
+					<div class="item"><a data-id="home" href="/">Home</a></div>
+					<div class="item"><a href="javascript:void(0);">My Account</a></div>
+					<div class="item"><a href="javascript:void(0);">Chat</a></div>
+					<div class="item"><a href="javascript:void(0);">Morning Routine</a></div>
+					<div class="item"><a href="javascript:void(0);">Lunch Adventures</a></div>
+					<div class="item"><a href="javascript:void(0);">Bedtime Routine</a></div>
+					<div class="item"><a data-id="itslit" href="javascript:void(0);">It's Lit</a></div>
+					<div class="item"><a href="javascript:void(0);">Made my Day</a></div>
+					<div class="item"><a href="javascript:void(0);">F my Life</a></div>
 				</div>
 				
-				<div class="image_grid">
-					<div class="image_grid_container">
-						<div class="picture_container">
-							<div>Morning Routine</div>
-							<img src="/Photos/morning.png" class="mypicture">
-						</div>		
-
-						<div class="picture_container">
-							<div>Lunch Adventure</div>
-							<img src="/Photos/lunch.png" class="mypicture">
-						</div>
-						
-						<div class="picture_container">
-							<div>Bedtime</div>
-							<img src="/Photos/dinner.png" class="mypicture">
-						</div>
-
-						<div class="picture_container" data-id="itslit">
-							<div>It's Lit</div>
-							<img src="/Photos/turnup.png" class="mypicture">
-						</div>
-						
-						<div class="picture_container">
-							<div>Made my Day</div>
-							<img src="/Photos/day.png" class="mypicture">
-						</div>
-						
-						<div class="picture_container">
-							<div>F My Life</div>
-							<img src="/Photos/fml.png" class="mypicture">
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<!-- Discover -->
-			<div class="page_content" data-id="discover">
-			
-				<!-- Search Bar -->
-				<div align="center">
-					<h3>Find friends and discover new people...</h3>
-					<form class="searchbar">
-						<input type="text" class="text" placeholder="search...">
-						<input type="submit" value="Go!">
+				<!-- upload form -->
+				<div class="form_container">
+					<form method="post" action="/upload" enctype="multipart/form-data">
+						<input id="imagefileinput" type="file" name="pic" accept="image/*" capture="camera">
+						<input type="text" name="caption"/>
+						<input type="submit" value="Upload">
 					</form>
-				</div>
-				
-				<div class="image_grid">
-					<div class="image_grid_container">
-						<img src="/Photos/bean.png" class="picture_container mypicture">
-						<img src="/Photos/photo1.png" class="picture_container mypicture">
-						<img src="/Photos/shower.png" class="picture_container mypicture">
-						<img src="/Photos/photo3.png" class="picture_container mypicture">
-						<img src="/Photos/day.png" class="picture_container mypicture">
-						<img src="/Photos/thyme.png" class="picture_container mypicture">
+					
+					<canvas id="canvas" width="300px" height="300px">
+					</canvas>
+					
+					<div class="metadata">
+						<div>
+							<div class="img_tags_recognition_label">Tags: </div>
+							<div class="img_tags_recognition"></div>
+						</div>
+						<div>
+							<div class="img_sentiment_label">Sentiment Analysis:</div>
+							<div class="img_sentiment"></div>
+						</div>
 					</div>
 				</div>
-			</div>
-			
-			<!-- Chat -->
-			<div class="page_content" data-id="chat">
-				<div align="center">
-					<h3>Chat</h3>
-					<img src="/Photos/chat.png" width="80%"/>
-				</div>
-			</div>
-			
-			<!-- It's Lit -->
-			<div class="page_content" data-id="itslit">
-			
-				<!-- title -->
-				<div align="center">
-					<h3>It's Lit</h3>
-				</div>
 				
-				<div class="image_grid">
-					<div class="image_grid_container">
-						<img src="Photos/people.png" class="picture_container mypicture">
-						<img src="Photos/people3.png" class="picture_container mypicture">
-						<img src="Photos/people2.png" class="picture_container mypicture">
-						<img src="Photos/people4.png" class="picture_container mypicture">
-						<img src="Photos/people5.png" class="picture_container mypicture">
-						<img src="Photos/turnup.png" class="picture_container mypicture">
+				
+				<!-- Home -->
+				<div class="page_content" data-id="home">
+					<div align="center">
+						<h3>Feed</h3>
+					</div>
+				
+					<div class="image_grid">
+						<div class="image_grid_container">
+							<img src="/Photos/happypeeps.jpg" class="picture_container mypicture">
+							<img src="/Photos/drinks.png" class="picture_container mypicture">
+							<img src="/Photos/accident.png" class="picture_container mypicture">
+							<img src="/Photos/chips.png" class="picture_container mypicture">
+							<img src="/Photos/mcdonalds.png" class="picture_container mypicture">
+							<img src="/Photos/mustache.png" class="picture_container mypicture">
+						</div>
 					</div>
 				</div>
+				
+				
+
+				
+				<!--Categories-->
+				<div class="page_content" data-id="categories">
+				
+					<div align="center">
+						<h3>Categories</h3>
+					</div>
+					
+					<div class="image_grid">
+						<div class="image_grid_container">
+							<div class="picture_container">
+								<div>Morning Routine</div>
+								<img src="/Photos/morning.png" class="mypicture">
+							</div>		
+
+							<div class="picture_container">
+								<div>Lunch Adventure</div>
+								<img src="/Photos/lunch.png" class="mypicture">
+							</div>
+							
+							<div class="picture_container">
+								<div>Bedtime</div>
+								<img src="/Photos/dinner.png" class="mypicture">
+							</div>
+
+							<div class="picture_container" data-id="itslit">
+								<div>It's Lit</div>
+								<img src="/Photos/turnup.png" class="mypicture">
+							</div>
+							
+							<div class="picture_container">
+								<div>Made my Day</div>
+								<img src="/Photos/day.png" class="mypicture">
+							</div>
+							
+							<div class="picture_container">
+								<div>F My Life</div>
+								<img src="/Photos/fml.png" class="mypicture">
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Discover -->
+				<div class="page_content" data-id="discover">
+				
+					<!-- Search Bar -->
+					<div align="center">
+						<h3>Find friends and discover new people...</h3>
+						<form class="searchbar">
+							<input type="text" class="text" placeholder="search...">
+							<input type="submit" value="Go!">
+						</form>
+					</div>
+					
+					<div class="image_grid">
+						<div class="image_grid_container">
+							<img src="/Photos/bean.png" class="picture_container mypicture">
+							<img src="/Photos/photo1.png" class="picture_container mypicture">
+							<img src="/Photos/shower.png" class="picture_container mypicture">
+							<img src="/Photos/photo3.png" class="picture_container mypicture">
+							<img src="/Photos/day.png" class="picture_container mypicture">
+							<img src="/Photos/thyme.png" class="picture_container mypicture">
+						</div>
+					</div>
+				</div>
+				
+				<!-- Chat -->
+				<div class="page_content" data-id="chat">
+					<div align="center">
+						<h3>Chat</h3>
+						<img src="/Photos/chat.png" width="80%"/>
+					</div>
+				</div>
+				
+				<!-- It's Lit -->
+				<div class="page_content" data-id="itslit">
+				
+					<!-- title -->
+					<div align="center">
+						<h3>It's Lit</h3>
+					</div>
+					
+					<div class="image_grid">
+						<div class="image_grid_container">
+							<img src="Photos/people.png" class="picture_container mypicture">
+							<img src="Photos/people3.png" class="picture_container mypicture">
+							<img src="Photos/people2.png" class="picture_container mypicture">
+							<img src="Photos/people4.png" class="picture_container mypicture">
+							<img src="Photos/people5.png" class="picture_container mypicture">
+							<img src="Photos/turnup.png" class="picture_container mypicture">
+						</div>
+					</div>
+				</div>
+				
+			
+			</div>
+			
+			
+			<!-- footer -->
+			<div class="footer shadow">
 			</div>
 			
 		</div>
+		
 	</body>
 </html>

@@ -42,12 +42,13 @@ function selectContent(tab_id) {
 
 $(document).ready(function() {
 	
-	
+	// click on the open nav button
     $(".open_nav_button").click(function() {
         openNav();
         return false;
     });
 
+	// click on the close nav button
     $(".close_nav_button").click(function() {
         closeNav();
         return false;
@@ -55,7 +56,7 @@ $(document).ready(function() {
 	
 	
 	
-
+	// click on the back shade
 	$("body").on('click', '.black_shade', function() {
 		closeAll();
 		return false;
@@ -63,6 +64,7 @@ $(document).ready(function() {
 	
 	
 	
+	// click on the menu
 	$(".page_content").hide();
 	$(".header_link").click(function() {
 		if ($(this)[0].hasAttribute("data-id")) {
@@ -75,7 +77,7 @@ $(document).ready(function() {
 	$(".header_link").eq(0).click();
 	
 	
-	
+	// click on the navigation drawer menu
 	$(".item a").click(function() {
 		if ($(this)[0].hasAttribute("data-id")) {
 			var tab_id = $(this).attr("data-id");
@@ -85,6 +87,7 @@ $(document).ready(function() {
 		return false;
 	});
 	
+	// click on the category picture
 	$(".page_content[data-id='categories'] .picture_container").click(function() {
 		if ($(this)[0].hasAttribute("data-id")) {
 			var tab_id = $(this).attr("data-id");
@@ -95,6 +98,7 @@ $(document).ready(function() {
 	});
 	
 	
+	// click submit on the upload image form
 	$(".form_container").hide();
     $('#imagefileinput').change(function(e) {
 		$(".metadata").hide();
