@@ -113,6 +113,34 @@ $(document).ready(function() {
         reader.readAsDataURL(file);
     });
 	
+	var expanded = false;
+	$(".menu_expand").click(function() {
+		$(".account_container").animate({
+			'height' : expanded ? '0px' : '80px'
+		}, 500);
+		$(".header_links").animate({
+			'height' : expanded ? '0px' : ($(window).width() > 403 ? '80px' : '115px')
+		}, 500);
+		expanded = !expanded;
+		return false;
+	});
+	
+	$(window).resize(function(){
+		var width = $(window).width();
+		if (width > 971) {
+			expanded = false;
+			$(".header_links").css('height', '');
+			$(".account_container").css('height', '');
+		} else if (width > 403 && expanded) {
+			$(".header_links").css('height', '80px');
+			$(".account_container").css('height', '80px');
+		} else if (expanded) {
+			$(".header_links").css('height', '115px');
+			$(".account_container").css('height', '80px');
+		}
+	});
+
+
 	/*
     $(".table_container").hide();
     $(".navigation a").click(function() {

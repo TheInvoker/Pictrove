@@ -31,11 +31,13 @@ a {
 	background-repeat:no-repeat;
 	background-size:50px;
 	background-position:center center;
-	width:50px;
+	width:60px;
 	height:80px;
-	margin-right:10px;
 	cursor:pointer;
 	float:left;
+}
+.header .open_nav_button:hover {
+	background-color:#1f4162
 }
 .header .main_container {
 	float:left;
@@ -43,10 +45,10 @@ a {
 .header .main_container .main_logo {
 	background-image:url('/images/logo.png');
 	background-repeat:no-repeat;
-	background-size:60px;
+	background-size:50px;
 	background-position:center center;
 	height:80px;
-	width:80px;
+	width:60px;
 	cursor:pointer;
 	float:left;
 }
@@ -101,6 +103,15 @@ a {
 	height:80px;
 	cursor:pointer;
 	float:right;
+	margin:0 0 0 10px;
+}
+.header .account_container .avatar_image:hover {
+	background-color:#1f4162;
+}
+.header .menu_expand {
+	display:none;
+	line-height:80px;
+	width:20px;
 }
 @media (max-width: 971px) {
 	.header .header_links, .header .account_container {
@@ -109,8 +120,31 @@ a {
 		width:100%;
 		justify-content:center;
 	}
+	.header .account_container .avatar_image {
+		margin:0 10px 0 0;
+	}
 	.header .header_links {
 		margin-right:0;
+	}
+	.header .account_container, .header .header_links {
+		height:0;
+		overflow:hidden;
+	}
+	.header .menu_expand {
+		background-image:url('/images/ic_keyboard_arrow_down_white_24px.svg');
+		background-repeat:no-repeat;
+		background-size:40px;
+		background-position:center center;
+		width:40px;
+		height:80px;
+		cursor:pointer;
+		display:block;
+		position:absolute;
+		right:0;
+		top:0;
+	}
+	.header .menu_expand:hover {
+		background-color:#1f4162;
 	}
 }
 @media (max-width: 403px) {
@@ -198,7 +232,7 @@ a {
 }
 #mySidenav .item a {
     text-decoration: none;
-    font-size: 25px;
+    font-size: 1.2em;
     transition: 0.3s;
 	color: #5d5151;
 }
