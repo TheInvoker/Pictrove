@@ -113,6 +113,8 @@ $(document).ready(function() {
         reader.readAsDataURL(file);
     });
 	
+	
+	// handle responsive menu
 	var expanded = false;
 	$(".menu_expand").click(function() {
 		$(".account_container").animate({
@@ -124,7 +126,6 @@ $(document).ready(function() {
 		expanded = !expanded;
 		return false;
 	});
-	
 	$(window).resize(function(){
 		var width = $(window).width();
 		if (width > 971) {
